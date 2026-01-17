@@ -15,7 +15,7 @@ fi
 
 # 2. Rename and Move 
 echo "[+] Moving $TOOL_NAME to $INSTALL_PATH..."
-sudo mv "$SOURCE_FILE" "$INSTALL_PATH"
+sudo cp "$SOURCE_FILE" "$INSTALL_PATH"
 
 # 3. Set permissions
 echo "[+] SETTING EXECUTABLE PERMISSIONS..."

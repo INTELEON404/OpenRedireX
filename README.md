@@ -1,79 +1,134 @@
 <h1 align="center">
-    OpenRedireX
-  <br>
+  🚀 OpenRedireX
 </h1>
 
-<h4 align="center">A fuzzer for detecting open redirect vulnerabilities</h4>
+<h4 align="center">
+  Smart and efficient fuzzer for detecting Open Redirect vulnerabilities
+</h4>
 
 <p align="center">
-  <a href="#install">🏗️ Install</a>  
-  <a href="#usage">⛏️ Usage</a>  
-  <a href="#dependencies">📚 Dependencies</a>
-  <br>
+  <a href="#installation">🏗 Installation</a> •
+  <a href="#usage">⛏ Usage</a> •
+  <a href="#features">✨ Features</a> •
+  <a href="#dependencies">📦 Dependencies</a> •
+  <a href="#disclaimer">⚠ Disclaimer</a>
 </p>
 
-# Install
+---
 
-To install OpenRedireX, run the following commands:
+## 🧠 About OpenRedireX
+
+**OpenRedireX** is a lightweight, high-performance fuzzer designed to identify **Open Redirect vulnerabilities** in modern web applications.
+
+It focuses on **accuracy over noise** by using curated payloads, keyword-based fuzzing, and concurrent request handling to uncover exploitable redirect issues that are commonly missed during manual testing.
+
+Ideal for **bug bounty hunters**, **penetration testers**, and **security researchers**.
+
+---
+
+## ✨ Features
+
+- 🔍 Detects open redirects using smart payload injection
+- ⚡ High-speed concurrent fuzzing
+- 🎯 Keyword-based URL replacement (`FUZZ` by default)
+- 🧩 Supports custom payload lists
+- 📈 Progress tracking with real-time feedback
+- 🧪 Designed to minimize false positives
+- 🛠 Simple CLI interface
+
+---
+
+## 🏗 Installation
+
+Clone the repository and run the setup script:
 
 ```sh
-git clone https://github.com/hackinter/OpenRDX
-cd OpenRDX
-sudo chmod +x setup.sh
+git clone https://github.com/INTELEON404/OpenRedireX
+cd OpenRedireX
+chmod +x setup.sh
 ./setup.sh
-```
+````
 
-# Usage
+---
 
-The script is executed from the command line and has the following usage options:
+## ⛏ Usage
+
+OpenRedireX reads URLs from **stdin** and replaces a keyword with redirect payloads.
+
+### Command Syntax
 
 ```sh
 openredirex [-p payloads] [-k keyword] [-c concurrency]
 ```
 
-- `-p`, `--payloads`: File containing a list of payloads. If not specified, a hardcoded list is used.
-- `-k`, `--keyword`: Keyword in URLs to replace with payload. Default is "FUZZ".
-- `-c`, `--concurrency`: Number of concurrent tasks. Default is 100.
+### Options
 
-The script expects a list of URLs as input. Each URL should contain the keyword specified by the `-k` option. The script replaces the keyword with each of the payloads and attempts to fetch the modified URL.
+* `-p`, `--payloads`
+  File containing redirect payloads
+  *(default: built-in payload list)*
 
-Example usage:
+* `-k`, `--keyword`
+  Keyword in URL to replace
+  *(default: FUZZ)*
+
+* `-c`, `--concurrency`
+  Number of concurrent requests
+  *(default: 100)*
+
+---
+
+## 📌 Example
+
+### Input URLs
+
+```txt
+https://newsroom.example.com/logout?redirect=FUZZ
+https://auth.example.com/logout?redirect_uri=FUZZ
+https://example.com/page?next=FUZZ
+```
+
+### Run the fuzzer
 
 ```sh
-cat list_of_urls.txt | openredirex -p payloads.txt -k "FUZZ" -c 50
+cat urls.txt | openredirex -p payloads.txt -k FUZZ -c 50
 ```
 
-List of URLs should look like below:
+The tool will replace `FUZZ` with each payload and test for unsafe redirects concurrently.
 
-```
-cat list_of_urls.txt
+---
 
-https://newsroom.example.com/logout?redirect=FUZZ
-https://auth.example.com/auth/realms/sonatype/protocol/openid-connect/logout?redirect_uri=test
-https://exmaple.com/php?test=baz&foo=bar
-```
+## 📦 Dependencies
 
-This example reads URLs from the file `list_of_urls.txt`, replaces all the values of the parameters to `FUZZ` (if `--keyword` is not supplied), then again replaces the keyword `FUZZ` or the supplied keyword with each payload from `payloads.txt`, and fetches each URL concurrently, with a maximum of 50 concurrent tasks.
+OpenRedireX uses the following libraries:
 
-# Dependencies
+* `argparse`
+* `asyncio`
+* `aiohttp`
+* `concurrent.futures`
+* `tqdm`
 
-The script uses the following libraries:
-
-- `argparse` for handling command-line arguments.
-- `aiohttp` for making HTTP requests.
-- `tqdm` for displaying progress.
-- `concurrent.futures` for handling concurrent tasks.
-- `asyncio` for managing asynchronous tasks.
-
-You need to install these dependencies before running the script. Most of them are part of the standard Python library. You can install `aiohttp` and `tqdm` using pip:
+Install required external dependencies:
 
 ```sh
 pip install aiohttp tqdm
 ```
 
-You can use this script to check for open redirects in web applications. However, you should only use it on systems that you have been given explicit permission to test.
+---
 
-## Author
+## ⚠ Disclaimer
 
-- [GITHUB](https://github.com/hackinter)
-- [TWITTER](https://x.com/_anonix_z)
+This tool is intended **for educational and authorized security testing only**.
+Do **not** use OpenRedireX against systems without explicit permission.
+The author is not responsible for misuse.
+
+---
+
+## 👤 Author
+
+* GitHub: [https://github.com/INTELEON404](https://github.com/INTELEON404)
+* X (Twitter): [https://x.com/_anonix_z](https://x.com/_anonix_z)
+
+
+
+Just tell me what you want next.
+```

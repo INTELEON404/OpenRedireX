@@ -31,7 +31,7 @@ def get_centered_banner():
         "┃ ┃┣━┛┣╸ ┃┗┫┣┳┛┣╸  ┃┃┃┣┳┛┣╸ ┏╋┛",
         "┗━┛╹  ┗━╸╹ ╹╹┗╸┗━╸╺┻┛╹╹┗╸┗━╸╹ ╹"
     ]
-    dev_line = "DEVELOPED BY INTELEON404 | VERSION OR v1.5"
+    dev_line = "DEVELOPED BY INTELEON404 | VERSION OR v1.6"
     tag_line = "“ADVANCED OpenRedireX FINDER”"
     
     output = ""
@@ -76,8 +76,6 @@ class RedirexHunter:
             url = line.strip()
             if not url: continue
             if not url.startswith(('http://', 'https://')): url = 'https://' + url
-            if self.args.filter and not any(re.search(p, url, re.IGNORECASE) for p in self.pettan_patterns):
-                continue
             parsed = urlparse(url)
             params = parse_qsl(parsed.query)
             if not params:
@@ -104,8 +102,6 @@ class RedirexHunter:
                                 self.found_count += 1
                                 if self.args.silent: print(test_url)
                                 else: tqdm.write(f"{Colors.BOLD}{Colors.MINT}[VULN]{Colors.ENDC} {Colors.SILVER}{test_url}{Colors.ENDC} {Colors.SKY}→{Colors.ENDC} {Colors.GOLD}{final_dest}{Colors.ENDC}")
-                                if self.args.output:
-                                    with open(self.args.output, 'a') as f: f.write(f"{test_url} | {final_dest}\n")
                 except: pass
                 if pbar: pbar.set_postfix({"hits": self.found_count}, refresh=True); pbar.update()
 
@@ -130,28 +126,33 @@ class RedirexHunter:
 
         if not self.args.silent:
             duration = round(time.time() - self.start_time, 2)
-            box_w = 42
-            top = "┏━ Scan Report " + "━" * (box_w - 15) + "┓"
-            line1 = f"┃ Duration: {duration}s".ljust(box_w - 1) + "┃"
-            line2 = f"┃ Total Requests: {self.total_scanned}".ljust(box_w - 1) + "┃"
-            line3 = f"┃ Vulnerabilities: {self.found_count}".ljust(box_w - 1) + "┃"
-            bottom = "┗" + "━" * (box_w - 1) + "┛"
+            # Box configuration
+            inner_width = 40
+            top_border = f"┏━ Scan Report {'━' * (inner_width - 13)}┓"
+            line_duration = f"┃ Duration: {duration}s".ljust(inner_width + 1) + "┃"
+            line_requests = f"┃ Total Requests: {self.total_scanned}".ljust(inner_width + 1) + "┃"
+            line_vulns    = f"┃ Vulnerabilities: {self.found_count}".ljust(inner_width + 1) + "┃"
+            bottom_border = "┗" + "━" * (inner_width + 1) + "┛"
             
             print("\n")
-            for l in [top, line1, line2, line3, bottom]:
-                print(f"{Colors.GOLD}{l.center(term_width)}{Colors.ENDC}")
+            for line in [top_border, line_duration, line_requests, line_vulns, bottom_border]:
+                print(f"{Colors.GOLD}{line.center(term_width)}{Colors.ENDC}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="OpenRedireX - Fixed UI")
-    parser.add_argument('-u', '--url', help='Target URL'); parser.add_argument('-i', '--input', help='Input List')
+    parser = argparse.ArgumentParser(description="OpenRedireX - v1.6 Center Fix")
+    parser.add_argument('-u', '--url', help='Target URL')
+    parser.add_argument('-i', '--input', help='Input List')
     parser.add_argument('-p', '--payloads', help='Payload File', required=True)
     parser.add_argument('-k', '--keyword', help='Keyword', default="FUZZ")
     parser.add_argument('-c', '--concurrency', help='Threads', type=int, default=100)
     parser.add_argument('-v', '--verify', help='Verify Domain', default="google.com")
-    parser.add_argument('-o', '--output', help='Save Findings'); parser.add_argument('-t', '--timeout', help='Timeout', type=int, default=10)
+    parser.add_argument('-o', '--output', help='Save Findings')
+    parser.add_argument('-t', '--timeout', help='Timeout', type=int, default=10)
     parser.add_argument('-s', '--silent', help='Silent Mode', action='store_true')
     parser.add_argument('--recon', help='Recon Mode', action='store_true')
-    parser.add_argument('--filter', help='Filter Patterns', action='store_true'); parser.add_argument('--proxy', help='Proxy URL')
+    parser.add_argument('--filter', help='Filter Patterns', action='store_true')
+    parser.add_argument('--proxy', help='Proxy URL')
+    
     args = parser.parse_args()
     if not args.silent: print(get_centered_banner())
     try: asyncio.run(RedirexHunter(args).run())

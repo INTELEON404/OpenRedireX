@@ -31,7 +31,7 @@ def get_banner():
         "┃ ┃┣━┛┣╸ ┃┗┫┣┳┛┣╸  ┃┃┃┣┳┛┣╸ ┏╋┛",
         "┗━┛╹  ┗━╸╹ ╹╹┗╸┗━╸╺┻┛╹╹┗╸┗━╸╹ ╹"
     ]
-    dev_line = "DEVELOPED BY INTELEON404 | VERSION OR v1.9"
+    dev_line = "DEVELOPED BY INTELEON404 | VERSION OR v1.7"
     tag_line = "“ADVANCED OPENREDIREX FINDER”"
     
     output = ""

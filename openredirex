@@ -126,20 +126,20 @@ class RedirexHunter:
 
         if not self.args.silent:
             duration = round(time.time() - self.start_time, 2)
-            # Box configuration
+            # Fixed width box with Left-Aligned title
             inner_width = 40
-            top_border = f"┏━ Scan Report {'━' * (inner_width - 13)}┓"
+            top_border = f" ┏━ Scan Report {'━' * (inner_width - 13)}┓"
             line_duration = f"┃ Duration: {duration}s".ljust(inner_width + 1) + "┃"
             line_requests = f"┃ Total Requests: {self.total_scanned}".ljust(inner_width + 1) + "┃"
             line_vulns    = f"┃ Vulnerabilities: {self.found_count}".ljust(inner_width + 1) + "┃"
-            bottom_border = "┗" + "━" * (inner_width + 1) + "┛"
+            bottom_border = " ┗" + "━" * (inner_width + 1) + "┛"
             
             print("\n")
             for line in [top_border, line_duration, line_requests, line_vulns, bottom_border]:
                 print(f"{Colors.GOLD}{line.center(term_width)}{Colors.ENDC}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="OpenRedireX - v1.6 Center Fix")
+    parser = argparse.ArgumentParser(description="OpenRedireX - v1.6 Left Title Fix")
     parser.add_argument('-u', '--url', help='Target URL')
     parser.add_argument('-i', '--input', help='Input List')
     parser.add_argument('-p', '--payloads', help='Payload File', required=True)

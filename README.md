@@ -1,18 +1,5 @@
-<h1 align="center">
-  🚀 OpenRedireX
-</h1>
+![OpenRedirex](https://github.com/INTELEON404/Template/blob/main/SVG/carbon.png?raw=true)
 
-<h4 align="center">
-  Smart and efficient fuzzer for detecting Open Redirect vulnerabilities
-</h4>
-
-<p align="center">
-  <a href="#installation">🏗 Installation</a> •
-  <a href="#usage">⛏ Usage</a> •
-  <a href="#features">✨ Features</a> •
-  <a href="#dependencies">📦 Dependencies</a> •
-  <a href="#disclaimer">⚠ Disclaimer</a>
-</p>
 
 ---
 
@@ -43,7 +30,7 @@ Ideal for **bug bounty hunters**, **penetration testers**, and **security resear
 Clone the repository and run the setup script:
 
 ```sh
-git clone https://github.com/INTELEON404/OpenRedireX
+git clone https://github.com/INTELEON404/OpenRedireX.git
 cd OpenRedireX
 chmod +x setup.sh
 ./setup.sh
@@ -126,9 +113,5 @@ The author is not responsible for misuse.
 ## 👤 Author
 
 * GitHub: [https://github.com/INTELEON404](https://github.com/INTELEON404)
-* X (Twitter): [https://x.com/_anonix_z](https://x.com/_anonix_z)
+* Github: [https://github.com/devanshbatham](https://github.com/devanshbatham)
 
-
-
-Just tell me what you want next.
-```

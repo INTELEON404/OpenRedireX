@@ -1,25 +1,18 @@
 #!/bin/bash
 
-# Define the repository link
-REPO_LINK="https://github.com/hackinter/OpenRDX"
+# Rename the openredirex.py file to openredirex
+mv openredirex.py openredirex
 
-# Rename the openredirex.py file to open-rdx
-mv openredirex.py open-rdx
 
-# Move the open-rdx file to /usr/local/bin
-sudo mv open-rdx /usr/local/bin/
+# Move the openredirex file to /usr/local/bin
+sudo mv openredirex /usr/local/bin/
 
-# Make the open-rdx file executable
-sudo chmod +x /usr/local/bin/open-rdx
+# Make the openredirex file executable
+sudo chmod +x /usr/local/bin/openredirex
 
 # Remove the openredirex.pyc file if it exists
 if [ -f openredirex.pyc ]; then
     rm openredirex.pyc
 fi
 
-# Clone the repository if it doesn't already exist
-if [ ! -d "OpenRDX" ]; then
-    git clone "$REPO_LINK"
-fi
-
-echo "OPEN-RDX has been installed successfully!"
+echo "openredirex has been installed successfully!" 

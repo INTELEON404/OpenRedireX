@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define constants for neatness
-TOOL_NAME="openredirex"
+TOOL_NAME="openredirex.py"
 SOURCE_FILE="openredirex"
 INSTALL_PATH="/usr/local/bin/$TOOL_NAME"
 

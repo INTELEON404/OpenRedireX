@@ -129,9 +129,9 @@ class RedirexHunter:
             # Fixed width box with Left-Aligned title
             inner_width = 40
             top_border = f" ┏━ Scan Report {'━' * (inner_width - 13)}┓"
-            line_duration = f"┃ Duration: {duration}s".ljust(inner_width + 1) + "┃"
-            line_requests = f"┃ Total Requests: {self.total_scanned}".ljust(inner_width + 1) + "┃"
-            line_vulns    = f"┃ Vulnerabilities: {self.found_count}".ljust(inner_width + 1) + "┃"
+            line_duration = f"┃ Duration: {duration}s".ljust(inner_width + 1) + " ┃"
+            line_requests = f"┃ Total Requests: {self.total_scanned}".ljust(inner_width + 1) + " ┃"
+            line_vulns    = f"┃ Vulnerabilities: {self.found_count}".ljust(inner_width + 1) + " ┃"
             bottom_border = " ┗" + "━" * (inner_width + 1) + "┛"
             
             print("\n")
